@@ -2,10 +2,15 @@
 
 angular.module('videoUploader', [
   'ngRoute',
-  'videoUploader.uploadVideo'
+  'videoUploader.uploadVideo',
+  'videoUploader.common'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+  config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/upload-video'});
-}]);
+    $routeProvider
+      .when('/upload-video', {
+        template: '<upload-video></upload-video>'
+      })
+      .otherwise({ redirectTo: '/upload-video' });
+  }]);

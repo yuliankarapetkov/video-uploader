@@ -1,7 +1,7 @@
 'use strict';
 
-videoUploader.component('progressBar', {
-    templateUrl: 'components/progress-bar/progress-bar.component.html',
+videoUploader_uploadVideo.component('progressBar', {
+    templateUrl: 'upload-video/progress-bar/progress-bar.component.html',
     controllerAs: 'vm',
     controller: 'ProgressBarController',
     bindings: {
@@ -10,7 +10,7 @@ videoUploader.component('progressBar', {
     }
 });
 
-videoUploader.controller('ProgressBarController', ProgressBarController);
+videoUploader_uploadVideo.controller('ProgressBarController', ProgressBarController);
 
 function ProgressBarController() {
     var vm = this;

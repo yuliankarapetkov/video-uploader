@@ -1,16 +1,17 @@
 'use strict';
 
-videoUploader.component('fileUploader', {
-    templateUrl: 'components/file-uploader/file-uploader.component.html',
+videoUploader_uploadVideo.component('fileUploader', {
+    templateUrl: 'upload-video/file-uploader/file-uploader.component.html',
     controllerAs: 'vm',
     controller: 'FileUploaderController',
     bindings: {
         onUploading: '&',
-        onDone: '&'
+        onDone: '&',
+        uploadUrl: '<'
     }
 });
 
-videoUploader.controller('FileUploaderController', FileUploaderController);
+videoUploader_uploadVideo.controller('FileUploaderController', FileUploaderController);
 FileUploaderController.$inject = ['$scope', '$element']
 
 function FileUploaderController($scope, $element) {
@@ -26,11 +27,12 @@ function FileUploaderController($scope, $element) {
         $scope.$apply();
     }
 
+    console.log(vm.uploadUrl);
+
     var fileUpload = $element.find("#fileupload").fileupload({
         dataType: 'json',
-        url: "https://upload.wistia.com?api_password=cc17ef2606978d5af02454a8f82bee751dedb3fbf71606e41408b4f34134d0f9",
+        url: vm.url,
         done: done,
         progress: progress
     });
-
 }

@@ -1,0 +1,1 @@
+var videoUploader_uploadVideo = angular.module('videoUploader.uploadVideo', []);
