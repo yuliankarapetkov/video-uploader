@@ -19,12 +19,12 @@ FileUploaderController.$inject = ['$scope', '$element']
 function FileUploaderController($scope, $element) {
     var vm = this;
 
-    var progress = function (e, data) {
+    vm.progress = function (e, data) {
         vm.onUploading({ e: e, data: data });
         $scope.$apply();
     }
 
-    var done = function (e, data) {
+    vm.done = function (e, data) {
         vm.onDone({ hashedId: data.result.hashed_id });
         $scope.$apply();
     }
@@ -36,8 +36,8 @@ function FileUploaderController($scope, $element) {
         fileUploader.fileupload({
             dataType: 'json',
             url: vm.url,
-            done: done,
-            progress: progress
+            done: vm.done,
+            progress: vm.progress
         });
 
         uploadButton.on('click', function() {
