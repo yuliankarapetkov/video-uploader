@@ -1,30 +1,37 @@
 'use strict';
 
 describe('FileUploaderController', function() {
-  var $componentController, $scope, $element;
+  var $componentController, $rootScope, $scope, $element;
 
   beforeEach(module('videoUploader.widgets'));
-  beforeEach(inject(function(_$componentController_) {
+  beforeEach(inject(function(_$componentController_, _$rootScope_) {
     $componentController = _$componentController_;
-    // $scope = _$scope_;
-    // $element = _$element_;
+    $rootScope = _$rootScope_;
   }));
 
   it('should call the `onUploading` binding, when uploading the file', function() {
     var onUploadingSpy = jasmine.createSpy('onUploading');
     var bindings = { onUploading: onUploadingSpy };
-    $scope = {};
+    $scope = $rootScope.$new();
     $element = {};
     var ctrl = $componentController('fileUploader', { $scope: $scope, $element: $element }, bindings);
+    var e = 'mockE';
+    var data = 'mockData';
 
-    ctrl.progress('mockE', 'mockData');
-    expect(onUploadingSpy).toHaveBeenCalledWith({ e: 'mockE', data: 'mockData' });
+    ctrl.progress(e, data);
+    expect(onUploadingSpy).toHaveBeenCalledWith({ e: e, data: data });
   });
 
-//   it('should return the trusted resource URL provided in the bindings', function() {
-//     var src = 'http://www.testthis.app/angular/1.6.4/unit-testing';
-//     var bindings = { src: src };
-//     var ctrl = $componentController('videoEmbed', null, bindings);
-//     expect(sce.getTrustedResourceUrl(ctrl.getSrc())).toEqual(src);
-//   });
+  it('should call the `onDone` binding, when the file is uploaded', function() {
+    var onDoneSpy = jasmine.createSpy('onDone');
+    var bindings = { onDone: onDoneSpy };
+    $scope = $rootScope.$new();
+    $element = {};
+    var ctrl = $componentController('fileUploader', { $scope: $scope, $element: $element }, bindings);
+    var e = 'mockE';
+    var data = { result: { hashed_id: 'test-hash' } };
+
+    ctrl.done(e, data);
+    expect(onDoneSpy).toHaveBeenCalledWith({ hashedId: data.result.hashed_id });
+  });
 });
