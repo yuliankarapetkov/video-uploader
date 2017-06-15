@@ -2,8 +2,9 @@
 
 angular.module('videoUploader', [
   'ngRoute',
-  'videoUploader.uploadVideo',
-  'videoUploader.common'
+  'videoUploader.core',
+  'videoUploader.widgets',
+  'videoUploader.uploadVideo'
 ]).
   config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');

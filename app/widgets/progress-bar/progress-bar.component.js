@@ -1,7 +1,9 @@
 'use strict';
 
-videoUploader_uploadVideo.component('progressBar', {
-    templateUrl: 'upload-video/progress-bar/progress-bar.component.html',
+var widgets = angular.module('videoUploader.widgets');
+
+widgets.component('progressBar', {
+    templateUrl: 'widgets/progress-bar/progress-bar.component.html',
     controllerAs: 'vm',
     controller: 'ProgressBarController',
     bindings: {
@@ -10,15 +12,19 @@ videoUploader_uploadVideo.component('progressBar', {
     }
 });
 
-videoUploader_uploadVideo.controller('ProgressBarController', ProgressBarController);
+widgets.controller('ProgressBarController', ProgressBarController);
 
 function ProgressBarController() {
     var vm = this;
 
     // Returns a proper width CSS property in percentage. 
-    vm.getProgress = function() {
+    vm.getBarStyle = function() {
         var progress = calculateProgress();
         return { width: progress + '%' }
+    }
+
+    vm.getProgress = function() {
+        return calculateProgress();
     }
 
     // Calculate the progress percentage, having the loaded and the total values.

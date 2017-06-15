@@ -12,6 +12,9 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
+  <div class="navbar">
+    <a class="logo" href="#">Video Uploader</a>
+  </div>
   <div ng-view></div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="bower_components/jquery-ui-widget/jquery.ui.widget.js"></script>
@@ -21,13 +24,17 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <!-- app -->
   <script src="app.js"></script>
+  <!-- core -->
+  <script src="core/core.module.js"></script>
+  <!-- widgets -->
+  <script src="widgets/widgets.module.js"></script>
+  <script src="widgets/video-embed/video-embed.component.js"></script>
+  <script src="widgets/progress-bar/progress-bar.component.js"></script>
+  <script src="widgets/file-uploader/file-uploader.component.js"></script>
+  <script src="widgets/video-uploader/video-uploader-state.js"></script>
+  <script src="widgets/video-uploader/video-uploader.component.js"></script>
   <!-- upload-video -->
   <script src="upload-video/upload-video.module.js"></script>
   <script src="upload-video/upload-video.component.js"></script>
-  <script src="upload-video/video-embed/video-embed.component.js"></script>
-  <script src="upload-video/progress-bar/progress-bar.component.js"></script>
-  <script src="upload-video/file-uploader/file-uploader.component.js"></script>
-  <!-- common -->
-  <script src="common/common.module.js"></script>
 </body>
 </html>
