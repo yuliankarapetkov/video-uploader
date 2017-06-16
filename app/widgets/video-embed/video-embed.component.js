@@ -20,7 +20,9 @@ VideoEmbedController.$inject = [ '$sce' ]
 function VideoEmbedController($sce) {
     var vm = this;
 
-    vm.getSrc = function() {
-        return $sce.trustAsResourceUrl(vm.src);
+    vm.$onInit = function() {
+        // Trust this resource url.
+        // See more: https://docs.angularjs.org/api/ng/service/$sce 
+        vm.embedSrc = $sce.trustAsResourceUrl(vm.src);
     }
 }

@@ -2,6 +2,7 @@
 
 var widgets = angular.module('videoUploader.widgets');
 
+// A simple progress bar component, which receives just two values - loaded and total.
 widgets.component('progressBar', {
     templateUrl: 'widgets/progress-bar/progress-bar.component.html',
     controllerAs: 'vm',
@@ -23,6 +24,7 @@ function ProgressBarController() {
         return { width: progress + '%' }
     }
 
+    // Returns the progress in percentage.
     vm.getProgress = function() {
         return calculateProgress();
     }

@@ -1,3 +1,4 @@
+// Enum-like class, containing the different states of the Video Uploader
 var VideoUploaderState = Object.freeze({
     NoFile: 1, 
     Uploading: 2, 

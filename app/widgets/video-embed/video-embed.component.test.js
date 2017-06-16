@@ -9,10 +9,13 @@ describe('VideoEmbedController', function() {
     $sce = _$sce_;
   }));
 
-  it('should return the trusted resource URL provided in the bindings', function() {
+  it('should initialize the embedSrc property with the trusted resource URL provided in the bindings', function() {
     var src = 'http://www.testthis.app/angular/1.6.4/unit-testing';
     var bindings = { src: src };
     var ctrl = $componentController('videoEmbed', null, bindings);
-    expect($sce.getTrustedResourceUrl(ctrl.getSrc())).toEqual(src);
+    
+    ctrl.$onInit();
+
+    expect($sce.getTrustedResourceUrl(ctrl.embedSrc)).toEqual(ctrl.src);
   });
 });
