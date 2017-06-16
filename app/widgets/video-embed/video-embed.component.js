@@ -21,9 +21,6 @@ function VideoEmbedController($sce) {
     var vm = this;
 
     vm.getSrc = function() {
-        var temp = $sce.trustAsResourceUrl(vm.src);
-        console.log('temp', temp);
-        console.log('vm.src', vm.src);
         return $sce.trustAsResourceUrl(vm.src);
     }
 }

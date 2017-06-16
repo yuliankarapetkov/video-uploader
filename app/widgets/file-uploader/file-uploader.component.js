@@ -9,6 +9,7 @@ widgets.component('fileUploader', {
     bindings: {
         onUploading: '&',
         onDone: '&',
+        onFail: '&',
         url: '<'
     }
 });
@@ -29,15 +30,23 @@ function FileUploaderController($scope, $element) {
         $scope.$apply();
     }
 
+    vm.fail = function(e, data) {
+        vm.onFail({ status: { code: data.jqXHR.status, text: data.jqXHR.statusText }, response: data.jqXHR.responseText });
+        $scope.$apply();
+    }
+
     vm.$onInit = function () {
         var fileUploader = $element.find('.file-uploader');
         var uploadButton = $element.find('.upload-btn');
 
+        // Other callbacks could be added.
+        // See details: https://github.com/blueimp/jQuery-File-Upload/wiki/Options#callback-options
         fileUploader.fileupload({
             dataType: 'json',
             url: vm.url,
+            progress: vm.progress,
             done: vm.done,
-            progress: vm.progress
+            fail: vm.fail
         });
 
         uploadButton.on('click', function() {

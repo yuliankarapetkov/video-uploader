@@ -34,4 +34,24 @@ describe('FileUploaderController', function() {
     ctrl.done(e, data);
     expect(onDoneSpy).toHaveBeenCalledWith({ hashedId: data.result.hashed_id });
   });
+
+  it('should call the `onFail` binding, when the file uploading has failed', function() {
+    var onFailSpy = jasmine.createSpy('onFail');
+    var bindings = { onFail: onFailSpy };
+    $scope = $rootScope.$new();
+    $element = {};
+    var ctrl = $componentController('fileUploader', { $scope: $scope, $element: $element }, bindings);
+    var e = 'mockE';
+    var data = { 
+      jqXHR: { 
+        status: '403',
+        statusText: 'Forbidden',
+        responseText: '{ error: "You have exceed the number of videos you are allowed to upload." }'
+      } 
+    };
+    var param = { status: { code: data.jqXHR.status, text: data.jqXHR.statusText }, response: data.jqXHR.responseText };
+
+    ctrl.fail(e, data);
+    expect(onFailSpy).toHaveBeenCalledWith(param);
+  });
 });

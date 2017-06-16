@@ -1,1 +1,1 @@
-angular.module('videoUploader.uploadVideo', []);
+angular.module('videoUploader.uploadVideo', [ 'videoUploader.core' ]);

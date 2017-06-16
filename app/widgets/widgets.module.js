@@ -1,1 +1,1 @@
-angular.module('videoUploader.widgets', []);
+angular.module('videoUploader.widgets', [ 'videoUploader.core' ]);

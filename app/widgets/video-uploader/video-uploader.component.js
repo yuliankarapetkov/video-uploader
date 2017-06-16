@@ -17,10 +17,13 @@ VideoUploaderController.$inject = ['constants'];
 function VideoUploaderController(constants) {
   var vm = this;
 
-  var iframeSrc = constants.IFRAME_SRC;
-
-  vm.videoUploaderState = VideoUploaderState;
-  vm.state = VideoUploaderState.NoFile;
+  vm.$onInit = function () {
+    vm.iframeSrc = constants.IFRAME_SRC;
+    vm.videoUploaderState = VideoUploaderState;
+    vm.state = VideoUploaderState.NoFile;
+    vm.uploadUrl = vm.url;
+    vm.error = null;
+  }
 
   vm.uploading = function (e, data) {
     vm.state = VideoUploaderState.Uploading;
@@ -30,10 +33,11 @@ function VideoUploaderController(constants) {
 
   vm.done = function (hashedId) {
     vm.state = VideoUploaderState.Done;
-    vm.src = iframeSrc + hashedId;
+    vm.src = vm.iframeSrc + hashedId;
   }
 
-  vm.$onInit = function () {
-    vm.uploadUrl = vm.url;
+  vm.fail = function(status, response) {
+    vm.state = VideoUploaderState.Fail;
+    vm.error = JSON.parse(response).error;
   }
 }

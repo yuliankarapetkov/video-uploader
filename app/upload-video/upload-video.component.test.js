@@ -1,23 +1,17 @@
 'use strict';
 
-// describe('myApp.view1 module', function() {
+describe('UploadVideoController', function() {
+  var $componentController, constants;
 
-//   beforeEach(module('myApp.view1'));
+  beforeEach(module('videoUploader.uploadVideo'));
+  beforeEach(inject(function(_$componentController_, _constants_) {
+    $componentController = _$componentController_;
+    constants = _constants_;
+  }));
 
-//   describe('view1 controller', function(){
-
-//     it('should ....', inject(function($controller) {
-//       //spec body
-//       var view1Ctrl = $controller('View1Ctrl');
-//       expect(view1Ctrl).toBeDefined();
-//     }));
-
-//   });
-// });
-
-describe('videoUploader.uploadVideo component', function () {
-    it('has a dummy spec to test 2 + 2', function () {
-        // An intentionally failing test. No code within expect() will never equal 4.
-        expect(2+2).toEqual(4);
-    });
+  it('should initialize the uploadUrl variable with the UPLOAD_URL constant`s value', function() {
+    var ctrl = $componentController('uploadVideo', constants, null);
+    ctrl.$onInit();
+    expect(ctrl.uploadUrl).toEqual(constants.UPLOAD_URL);
+  });
 });
