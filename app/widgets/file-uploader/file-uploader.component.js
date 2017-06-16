@@ -22,6 +22,14 @@ FileUploaderController.$inject = ['$scope', '$element']
 function FileUploaderController($scope, $element) {
     var vm = this;
 
+    // Add callback
+    // Change the upload url - just in case the user has changed it from the input.
+    // Submit the file.
+    vm.add = function (e, data) {
+        data.url = vm.url;
+        data.submit();
+    }
+
     // Progress callback 
     vm.progress = function (e, data) {
         vm.onUploading({ e: e, data: data });
@@ -57,6 +65,7 @@ function FileUploaderController($scope, $element) {
         fileUploader.fileupload({
             dataType: 'json',
             url: vm.url,
+            add: vm.add,
             progress: vm.progress,
             done: vm.done,
             fail: vm.fail
