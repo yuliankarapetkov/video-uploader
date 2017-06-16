@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="videoUploader">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Video Uploader</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <a class="logo" href="#">Video Uploader</a>
+  </div>
+  <div ng-view></div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="bower_components/jquery-ui-widget/jquery.ui.widget.js"></script>
+  <script src="bower_components/jquery-iframe-transport/jquery.iframe-transport.js"></script>
+  <script src="bower_components/jquery-fileupload/jquery.fileupload.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <!-- app -->
+  <script src="app.js"></script>
+  <!-- core -->
+  <script src="core/core.module.js"></script>
+  <script src="models/video-uploader-state.js"></script>
+  <!-- widgets -->
+  <script src="widgets/widgets.module.js"></script>
+  <script src="widgets/video-embed/video-embed.component.js"></script>
+  <script src="widgets/progress-bar/progress-bar.component.js"></script>
+  <script src="widgets/file-uploader/file-uploader.component.js"></script>
+  <script src="widgets/video-uploader/video-uploader.component.js"></script>
+  <!-- upload-video -->
+  <script src="upload-video/upload-video.module.js"></script>
+  <script src="upload-video/upload-video.component.js"></script>
+</body>
+</html>

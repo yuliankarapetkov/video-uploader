@@ -1,0 +1,22 @@
+<div class="video-uploader">
+    <div class="video-uploader-content" ng-if="vm.state === vm.videoUploaderState.NoFile">
+        <!-- This could be added as an attribute to the component -->
+        <p>Input your Wistia upload URL or leave the default one (mine)</p>
+        <input class="form-input" type="text" ng-model="vm.uploadUrl" />
+        <!-- This could be added as an attribute to the component -->
+        <p class="video-uploader-message">and then click the button to add a video</p>
+        <file-uploader url="vm.uploadUrl" on-uploading="vm.uploading(e, data)" on-done="vm.done(hashedId)" on-fail="vm.fail(status, response)"></file-uploader>
+    </div>
+    <div class="video-uploader-content" ng-if="vm.state === vm.videoUploaderState.Uploading">
+        <!-- This could be added as an attribute to the component -->
+        <p class="video-uploader-message">Uploading video..</p>
+        <progress-bar loaded="vm.loaded" total="vm.total"></progress-bar>
+    </div>
+    <div class="video-uploader-content" ng-if="vm.state === vm.videoUploaderState.Done">
+        <video-embed src="vm.src"></video-embed>
+    </div>
+    <div class="video-uploader-content" ng-if="vm.state === vm.videoUploaderState.Fail">
+        <!-- This could be added as an attribute to the component -->
+        <p class="video-uploader-message">{{ vm.error }}</p>
+    </div>
+</div>
